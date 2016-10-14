@@ -52,3 +52,20 @@
 | :----: | :----------------: |
 | images | 干货配图（该项可能存在无数据的情况） |
 |  url   |     干货数据的原始链接      |
+
+##	Dependency
+
+> * [RxJava](https://github.com/ReactiveX/RxJava)
+> * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+> * [Glide](https://github.com/bumptech/glide)
+> * [Retrofit](https://square.github.io/retrofit/)
+> * [LeakCanary](https://github.com/square/leakcanary)
+
+##	THANKS FOR
+
+> * [干货集中营](http://gank.io)
+
+##	ABOUT ME
+
+> * Email:tonycheng93@outlook.com
+> * Blog:[http://tonycheng93.github.io/](http://tonycheng93.github.io/)
