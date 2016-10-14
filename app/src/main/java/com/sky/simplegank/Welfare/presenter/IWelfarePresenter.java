@@ -5,4 +5,5 @@ package com.sky.simplegank.Welfare.presenter;
  */
 
 public interface IWelfarePresenter {
+
 }
