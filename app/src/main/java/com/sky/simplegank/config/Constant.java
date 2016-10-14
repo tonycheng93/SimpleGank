@@ -6,5 +6,5 @@ package com.sky.simplegank.config;
 
 public abstract class Constant {
 
-    public static final String BASE_URL = "http://gank.io/api/data/";
+    public static final String BASE_URL = "http://gank.io/api/";
 }

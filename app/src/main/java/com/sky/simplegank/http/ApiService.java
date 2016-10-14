@@ -15,7 +15,7 @@ import rx.Observable;
 public interface ApiService {
 
     //http://gank.io/api/data/Android/10/1
-    @GET("{category}/{count}/{page}")
+    @GET("data/{category}/{count}/{page}")
     Observable<HttpResult<List<GankEntity>>> getGankList(
             @Path("category") String category,
             @Path("count") int count,
