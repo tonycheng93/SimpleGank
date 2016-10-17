@@ -1,5 +1,7 @@
 package com.sky.simplegank.http;
 
+import com.sky.simplegank.utils.Debugger;
+
 import rx.Subscriber;
 
 /**
@@ -14,7 +16,8 @@ public abstract class HttpResultSubscriber<T> extends
 
     @Override
     public void onNext(HttpResult<T> tHttpResult) {
-        if (tHttpResult.isError()) {
+        if (!tHttpResult.isError()) {
+            Debugger.d(tHttpResult.getResults().toString());
             onSuccess(tHttpResult);
         } else {
             onFail(new Throwable("error = " + tHttpResult.isError()));

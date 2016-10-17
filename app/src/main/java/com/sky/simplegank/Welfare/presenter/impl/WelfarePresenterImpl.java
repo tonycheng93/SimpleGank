@@ -31,8 +31,8 @@ public class WelfarePresenterImpl implements IWelfarePresenter,
 
     @Override
     public void onSuccess(List<GankEntity> welfareList) {
-        mIWelfareView.showLoading();
         mIWelfareView.addWelfare(welfareList);
+        mIWelfareView.hideLoading();
     }
 
     @Override

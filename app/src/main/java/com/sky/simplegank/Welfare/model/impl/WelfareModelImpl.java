@@ -7,6 +7,7 @@ import com.sky.simplegank.http.ApiService;
 import com.sky.simplegank.http.HttpResult;
 import com.sky.simplegank.http.HttpResultSubscriber;
 import com.sky.simplegank.http.RetrofitClient;
+import com.sky.simplegank.utils.Debugger;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class WelfareModelImpl implements IWelfareModel {
                 .subscribe(new HttpResultSubscriber<List<GankEntity>>() {
                     @Override
                     public void onSuccess(HttpResult<List<GankEntity>> result) {
+                        Debugger.d(TAG,result.toString());
                         listener.onSuccess(result.getResults());
                     }
 
