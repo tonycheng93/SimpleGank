@@ -7,4 +7,6 @@ package com.sky.simplegank.config;
 public abstract class Constant {
 
     public static final String BASE_URL = "http://gank.io/api/";
+
+    public static final String CATEGORY_WELFARE = "福利";
 }

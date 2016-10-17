@@ -8,7 +8,7 @@ import com.sky.simplegank.Welfare.model.impl.WelfareModelImpl;
 
 public interface IWelfareModel {
 
-    void loadWelfareList(String category, int count, int page,
+    void loadWelfareList(int count, int page,
                          WelfareModelImpl.OnLoadWelfareListListener listener);
 
 }
