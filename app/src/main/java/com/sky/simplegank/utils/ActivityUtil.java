@@ -1,4 +1,4 @@
-package com.sky.simplegank.http;
+package com.sky.simplegank.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

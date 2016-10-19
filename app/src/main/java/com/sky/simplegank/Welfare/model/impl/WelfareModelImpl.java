@@ -33,7 +33,7 @@ public class WelfareModelImpl implements IWelfareModel {
                 .subscribe(new HttpResultSubscriber<List<GankEntity>>() {
                     @Override
                     public void onSuccess(HttpResult<List<GankEntity>> result) {
-                        Debugger.d(TAG,result.toString());
+                        Debugger.d(TAG, result.toString());
                         listener.onSuccess(result.getResults());
                     }
 

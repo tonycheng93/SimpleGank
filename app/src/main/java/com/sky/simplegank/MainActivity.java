@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.sky.simplegank.Welfare.view.WelfareFragment;
-import com.sky.simplegank.http.ActivityUtil;
+import com.sky.simplegank.utils.ActivityUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

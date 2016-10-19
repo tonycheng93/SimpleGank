@@ -20,4 +20,5 @@ public interface ApiService {
             @Path("category") String category,
             @Path("count") int count,
             @Path("page") int page);
+
 }

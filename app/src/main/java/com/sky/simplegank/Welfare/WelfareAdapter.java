@@ -20,6 +20,8 @@ import java.util.List;
 
 public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareViewHolder> {
 
+    private static final String TAG = "WelfareAdapter";
+
     private Context mContext;
     private List<GankEntity> mData;
 
@@ -41,15 +43,19 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
     @Override
     public void onBindViewHolder(WelfareViewHolder holder, int position) {
         GankEntity welfare = mData.get(position);
-        if (welfare != null) {
-            ImageLoader.display(mContext, welfare.getUrl(), holder.ivWelfare);
-            holder.tvWelfare.setText(welfare.getDesc());
+        if (welfare == null) {
+            return;
         }
+        ImageLoader.display(mContext, welfare.getUrl(), holder.ivWelfare);
+        holder.tvWelfare.setText(welfare.getDesc());
     }
 
     @Override
     public int getItemCount() {
-        return mData.size() == 0 ? 0 : mData.size();
+        if (mData == null) {
+            return 0;
+        }
+        return mData.size();
     }
 
     public class WelfareViewHolder extends RecyclerView.ViewHolder {

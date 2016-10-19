@@ -92,6 +92,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         if (mData == null) {
             mData = new ArrayList<>();
         }
+        mData.clear();
         mData.addAll(welfareList);
         mAdapter.setData(mData);
     }
@@ -108,9 +109,12 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
     @Override
     public void onRefresh() {
-        if (mData != null) {
-            mData.clear();
-        }
+        /**
+         * 会出现Issues #1的问题
+         */
+//        if (mData != null) {
+//            mData.clear();
+//        }
         mWelfarePresenter.loadWelfareList(mCount, mPage);
     }
 }
