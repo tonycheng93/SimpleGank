@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +31,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
     private SwipeRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
+    private StaggeredGridLayoutManager mLayoutManager;
     private WelfareAdapter mAdapter;
 
     private IWelfarePresenter mWelfarePresenter;
@@ -71,7 +71,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new WelfareAdapter(getActivity());

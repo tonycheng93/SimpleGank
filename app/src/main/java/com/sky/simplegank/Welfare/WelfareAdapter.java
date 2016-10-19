@@ -1,6 +1,8 @@
 package com.sky.simplegank.Welfare;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.sky.simplegank.R;
 import com.sky.simplegank.entity.GankEntity;
+import com.sky.simplegank.utils.DensityUtil;
 import com.sky.simplegank.utils.ImageLoader;
 
 import java.util.List;
@@ -25,8 +30,11 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
     private Context mContext;
     private List<GankEntity> mData;
 
+    private int mScreenWidth;
+
     public WelfareAdapter(Context context) {
         this.mContext = context;
+        mScreenWidth = DensityUtil.getWidthInPx(context);
     }
 
     public void setData(List<GankEntity> data) {
@@ -41,13 +49,36 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
     }
 
     @Override
-    public void onBindViewHolder(WelfareViewHolder holder, int position) {
-        GankEntity welfare = mData.get(position);
+    public void onBindViewHolder(final WelfareViewHolder holder, int position) {
+        final GankEntity welfare = mData.get(position);
         if (welfare == null) {
             return;
         }
-        ImageLoader.display(mContext, welfare.getUrl(), holder.ivWelfare);
-        holder.tvWelfare.setText(welfare.getDesc());
+
+        String time = welfare.getPublishedAt().split("T")[0];
+        holder.tvWelfare.setText(time);
+
+        if (welfare.getItemHeight() > 0) {
+            ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();
+            params.height = welfare.getItemHeight();
+        }
+
+        ImageLoader.display(mContext, welfare.getUrl(), new SimpleTarget<Bitmap>(mScreenWidth / 2, mScreenWidth / 2) {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                int width = resource.getWidth();
+                int height = resource.getHeight();
+                //计算宽高比
+                int finalHeight = (mScreenWidth / 2) * height / width;
+                if (welfare.getItemHeight() <= 0) {
+                    welfare.setItemHeight(finalHeight);
+                    ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();
+                    params.height = welfare.getItemHeight();
+                }
+                holder.ivWelfare.setImageBitmap(resource);
+            }
+        });
+//        ImageLoader.display(mContext, welfare.getUrl(), holder.ivWelfare);
     }
 
     @Override
@@ -60,12 +91,14 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
 
     public class WelfareViewHolder extends RecyclerView.ViewHolder {
 
+        private CardView cdRoot;
         private ImageView ivWelfare;
         private TextView tvWelfare;
 
         public WelfareViewHolder(View itemView) {
             super(itemView);
 
+            cdRoot = (CardView) itemView.findViewById(R.id.card_view);
             ivWelfare = (ImageView) itemView.findViewById(R.id.iv_welfare);
             tvWelfare = (TextView) itemView.findViewById(R.id.tv_welfare);
         }
