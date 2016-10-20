@@ -14,6 +14,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.sky.simplegank.R;
 import com.sky.simplegank.entity.GankEntity;
+import com.sky.simplegank.utils.Debugger;
 import com.sky.simplegank.utils.DensityUtil;
 import com.sky.simplegank.utils.ImageLoader;
 
@@ -35,6 +36,7 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
     public WelfareAdapter(Context context) {
         this.mContext = context;
         mScreenWidth = DensityUtil.getWidthInPx(context);
+        Debugger.d(TAG, "屏幕的宽度：" + mScreenWidth);
     }
 
     public void setData(List<GankEntity> data) {
@@ -76,9 +78,9 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
                     params.height = welfare.getItemHeight();
                 }
                 holder.ivWelfare.setImageBitmap(resource);
+                holder.ivWelfare.setTag(welfare.getUrl());
             }
         });
-//        ImageLoader.display(mContext, welfare.getUrl(), holder.ivWelfare);
     }
 
     @Override

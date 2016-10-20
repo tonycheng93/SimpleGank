@@ -14,6 +14,12 @@ import com.bumptech.glide.request.target.SimpleTarget;
 
 public class ImageLoader {
 
+    /**
+     * 普通加载图片方式
+     * @param context
+     * @param url
+     * @param imageView
+     */
     public static void display(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
@@ -21,6 +27,12 @@ public class ImageLoader {
                 .into(imageView);
     }
 
+    /**
+     * 需要对图片进行剪裁
+     * @param context
+     * @param url
+     * @param simpleTarget
+     */
     public static void display(Context context, String url, SimpleTarget<Bitmap> simpleTarget) {
         Glide.with(context)
                 .load(url)
