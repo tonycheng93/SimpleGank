@@ -6,12 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.sky.simplegank.R;
 import com.sky.simplegank.Welfare.WelfareAdapter;
 import com.sky.simplegank.Welfare.presenter.IWelfarePresenter;
@@ -20,6 +20,7 @@ import com.sky.simplegank.entity.GankEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +31,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
     private static final String TAG = "WelfareFragment";
 
     private SwipeRefreshLayout mRefreshLayout;
-    private RecyclerView mRecyclerView;
+    private EasyRecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mLayoutManager;
     private WelfareAdapter mAdapter;
 
@@ -67,8 +68,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
         mRefreshLayout.setOnRefreshListener(this);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView = (EasyRecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -117,4 +117,5 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 //        }
         mWelfarePresenter.loadWelfareList(mCount, mPage);
     }
+
 }

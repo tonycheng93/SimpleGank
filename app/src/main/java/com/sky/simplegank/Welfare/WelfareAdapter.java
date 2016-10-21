@@ -61,6 +61,7 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
         holder.tvWelfare.setText(time);
 
         if (welfare.getItemHeight() > 0) {
+            Debugger.d(TAG,"ItemHeight:" + welfare.getItemHeight());
             ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();
             params.height = welfare.getItemHeight();
         }
@@ -77,8 +78,10 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.WelfareV
                     ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();
                     params.height = welfare.getItemHeight();
                 }
-                holder.ivWelfare.setImageBitmap(resource);
                 holder.ivWelfare.setTag(welfare.getUrl());
+                if (holder.ivWelfare.getTag().equals(welfare.getUrl())){
+                    holder.ivWelfare.setImageBitmap(resource);
+                }
             }
         });
     }
