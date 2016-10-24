@@ -218,5 +218,5 @@
 
 ##	About me
 
-> * Email:tonycheng93@outlook.com
+> * Email:tonycheng93@gmail.com
 > * Blog:[http://tonycheng93.github.io/](http://tonycheng93.github.io/)
