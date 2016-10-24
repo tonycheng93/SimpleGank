@@ -16,6 +16,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.sky.simplegank.R;
 import com.sky.simplegank.entity.GankEntity;
+import com.sky.simplegank.utils.Debugger;
 import com.sky.simplegank.utils.DensityUtil;
 import com.sky.simplegank.utils.ImageLoader;
 
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.WelfareViewHolder> {
 
-    private static final String TAG = "WelfareAdapter1";
+    private static final String TAG = "WelfareAdapter";
 
     private Context mContext;
     private List<GankEntity> mData;
@@ -37,6 +38,7 @@ public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.Welfare
     public WelfareAdapter1(Context context) {
         this.mContext = context;
         mScreenWidth = DensityUtil.getWidthInPx(context);
+        Debugger.d(TAG,"屏幕的宽度：" + mScreenWidth);
     }
 
     public void setData(List<GankEntity> data) {
@@ -103,8 +105,15 @@ public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.Welfare
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 int width = resource.getWidth();
                 int height = resource.getHeight();
+                Debugger.d(TAG,"图片的width = " + width + ",height = " + height);
                 //计算宽高比
-                int finalHeight = (mScreenWidth / 2) * height / width;
+                int finalHeight;
+                if (width > height){//尽量保持图片处于一个正常的宽高比率
+                    finalHeight = (mScreenWidth /2) * width / height;
+                }else {
+                    finalHeight = (mScreenWidth / 2) * height / width;
+                }
+                Debugger.d(TAG,"计算出的item的高度：" + finalHeight);
                 if (welfare.getItemHeight() <= 0) {
                     welfare.setItemHeight(finalHeight);
                     ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();

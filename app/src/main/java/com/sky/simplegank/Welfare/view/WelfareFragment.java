@@ -65,8 +65,12 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
         mRecyclerView = (UltimateRecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(false);
+
         mRecyclerView.setDefaultSwipeToRefreshColorScheme(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
+        mRecyclerView.enableDefaultSwipeRefresh(true);
         mRecyclerView.setDefaultOnRefreshListener(this);
+
+        mRecyclerView.reenableLoadmore();
 
         mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -91,7 +95,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         if (mData == null) {
             mData = new ArrayList<>();
         }
-        mData.clear();
+//        mData.clear();//不能clear，否则下拉刷新会重新填充list
         mData.addAll(welfareList);
         mAdapter.setData(mData);
     }
@@ -120,7 +124,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
     @Override
     public void loadMore(int itemsCount, int maxLastVisiblePosition) {
-        mWelfarePresenter.loadWelfareList(mCount, ++mPage);
+        mWelfarePresenter.loadWelfareList(mCount, mPage++);
         Debugger.d(TAG, "加载更多...");
     }
 }
