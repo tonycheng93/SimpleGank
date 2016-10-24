@@ -1,16 +1,11 @@
-<android.support.v4.widget.SwipeRefreshLayout
+<com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_refresh_widget"
+    android:id="@+id/recycler_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.jude.easyrecyclerview.EasyRecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/card_margin"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    </com.jude.easyrecyclerview.EasyRecyclerView>
-</android.support.v4.widget.SwipeRefreshLayout>
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/card_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:recyclerviewEmptyView="@layout/recycler_view_empty_view"
+    app:recyclerviewScrollbars="vertical">
+</com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
