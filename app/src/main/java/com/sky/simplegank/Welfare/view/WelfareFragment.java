@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +65,6 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
         mRecyclerView = (UltimateRecyclerView) rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setDefaultSwipeToRefreshColorScheme(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
         mRecyclerView.setDefaultOnRefreshListener(this);
 

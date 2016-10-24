@@ -56,7 +56,7 @@ public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.Welfare
 
     @Override
     public WelfareViewHolder newFooterHolder(View view) {
-        return new WelfareViewHolder(view);
+        return null;
     }
 
     @Override

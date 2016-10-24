@@ -38,7 +38,5 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.jude:easyrecyclerview:4.2.3'
     compile 'com.marshalchen.ultimaterecyclerview:library:0.7.0'
 }
