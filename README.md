@@ -214,6 +214,7 @@
 ##	Thanks
 
 > * [干货集中营](http://gank.io)
+> * [UltimateRecyclerView](https://github.com/cymcsg/UltimateRecyclerView)
 
 ##	About me
 
