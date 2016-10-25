@@ -214,8 +214,9 @@
 ##	Thanks
 
 > * [干货集中营](http://gank.io)
+> * [UltimateRecyclerView](https://github.com/cymcsg/UltimateRecyclerView)
 
 ##	About me
 
-> * Email:tonycheng93@outlook.com
+> * Email:tonycheng93@gmail.com
 > * Blog:[http://tonycheng93.github.io/](http://tonycheng93.github.io/)
