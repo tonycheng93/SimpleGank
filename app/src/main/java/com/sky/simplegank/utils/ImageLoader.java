@@ -16,6 +16,7 @@ public class ImageLoader {
 
     /**
      * 普通加载图片方式
+     *
      * @param context
      * @param url
      * @param imageView
@@ -28,7 +29,22 @@ public class ImageLoader {
     }
 
     /**
+     * 加载资源文件已有的图片
+     *
+     * @param context
+     * @param resId
+     * @param imageView
+     */
+    public static void display(Context context, int resId, ImageView imageView) {
+        Glide.with(context)
+                .load(resId)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+    }
+
+    /**
      * 需要对图片进行剪裁
+     *
      * @param context
      * @param url
      * @param simpleTarget
@@ -40,4 +56,5 @@ public class ImageLoader {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(simpleTarget);
     }
+
 }

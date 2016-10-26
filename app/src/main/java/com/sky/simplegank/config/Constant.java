@@ -14,8 +14,6 @@ public abstract class Constant {
 
     public static final String BASE_URL = "http://gank.io/api/";
 
-    public static final int SIZE = 10;
-
     public static final String CATEGORY_WELFARE = "福利";
     public static final String CATEGORY_ANDROID = "Android";
     public static final String CATEGORY_IOS = "iOS";

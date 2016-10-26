@@ -26,7 +26,7 @@ import java.util.List;
  * Created by tonycheng on 2016/10/24.
  */
 
-public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.WelfareViewHolder> {
+public class WelfareAdapter extends UltimateViewAdapter<WelfareAdapter.WelfareViewHolder> {
 
     private static final String TAG = "WelfareAdapter";
 
@@ -35,10 +35,10 @@ public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.Welfare
 
     private int mScreenWidth;
 
-    public WelfareAdapter1(Context context) {
+    public WelfareAdapter(Context context) {
         this.mContext = context;
         mScreenWidth = DensityUtil.getWidthInPx(context);
-        Debugger.d(TAG,"屏幕的宽度：" + mScreenWidth);
+        Debugger.d(TAG, "屏幕的宽度：" + mScreenWidth);
     }
 
     public void setData(List<GankEntity> data) {
@@ -105,15 +105,15 @@ public class WelfareAdapter1 extends UltimateViewAdapter<WelfareAdapter1.Welfare
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 int width = resource.getWidth();
                 int height = resource.getHeight();
-                Debugger.d(TAG,"图片的width = " + width + ",height = " + height);
+                Debugger.d(TAG, "图片的width = " + width + ",height = " + height);
                 //计算宽高比
                 int finalHeight;
-                if (width > height){//尽量保持图片处于一个正常的宽高比率
-                    finalHeight = (mScreenWidth /2) * width / height;
-                }else {
+                if (width > height) {//尽量保持图片处于一个正常的宽高比率
+                    finalHeight = (mScreenWidth / 2) * width / height;
+                } else {
                     finalHeight = (mScreenWidth / 2) * height / width;
                 }
-                Debugger.d(TAG,"计算出的item的高度：" + finalHeight);
+                Debugger.d(TAG, "计算出的item的高度：" + finalHeight);
                 if (welfare.getItemHeight() <= 0) {
                     welfare.setItemHeight(finalHeight);
                     ViewGroup.LayoutParams params = holder.cdRoot.getLayoutParams();

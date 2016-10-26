@@ -1,52 +1,49 @@
-package com.sky.simplegank.Welfare.view;
+package com.sky.simplegank.Android.view;
 
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
+import com.sky.simplegank.Android.AndroidAdapter;
+import com.sky.simplegank.Android.presenter.IAndroidPresenter;
+import com.sky.simplegank.Android.presenter.impl.AndroidPresenterImpl;
 import com.sky.simplegank.R;
-import com.sky.simplegank.Welfare.WelfareAdapter;
-import com.sky.simplegank.Welfare.presenter.IWelfarePresenter;
-import com.sky.simplegank.Welfare.presenter.impl.WelfarePresenterImpl;
 import com.sky.simplegank.entity.GankEntity;
-import com.sky.simplegank.utils.Debugger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WelfareFragment extends Fragment implements IWelfareView,
+public class AndroidFragment extends Fragment implements IAndroidView,
         SwipeRefreshLayout.OnRefreshListener, UltimateRecyclerView.OnLoadMoreListener {
 
-    private static final String TAG = "WelfareFragment";
 
     private UltimateRecyclerView mRecyclerView;
-    private StaggeredGridLayoutManager mLayoutManager;
-    private WelfareAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
+    private AndroidAdapter mAdapter;
 
-    private IWelfarePresenter mWelfarePresenter;
+    private IAndroidPresenter mPresenter;
     private List<GankEntity> mData;
     private int mCount = 10;
     private int mPage = 1;
 
-    public WelfareFragment() {
+    public AndroidFragment() {
         // Required empty public constructor
     }
 
-    public static WelfareFragment newInstance(String type) {
+    public static AndroidFragment newInstance(String type) {
         Bundle args = new Bundle();
         args.putString("type", type);
-        WelfareFragment fragment = new WelfareFragment();
+        AndroidFragment fragment = new AndroidFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,30 +51,28 @@ public class WelfareFragment extends Fragment implements IWelfareView,
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWelfarePresenter = new WelfarePresenterImpl(this);
+        mPresenter = new AndroidPresenterImpl(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_welfare, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_android, container, false);
 
-        mRecyclerView = (UltimateRecyclerView) rootView.findViewById(R.id.recycler_view);
+        mRecyclerView = (UltimateRecyclerView) rootView.findViewById(R.id.android_recycler_view);
         mRecyclerView.setHasFixedSize(false);
 
-        mRecyclerView.setDefaultSwipeToRefreshColorScheme(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
         mRecyclerView.enableDefaultSwipeRefresh(true);
         mRecyclerView.setDefaultOnRefreshListener(this);
-
         mRecyclerView.reenableLoadmore();
+        mRecyclerView.setOnLoadMoreListener(this);
 
-        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new WelfareAdapter(getActivity());
+        mAdapter = new AndroidAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setOnLoadMoreListener(this);
 
         onRefresh();
 
@@ -89,14 +84,12 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mRecyclerView.setRefreshing(true);
     }
 
-
     @Override
-    public void addWelfare(List<GankEntity> welfareList) {
+    public void addWelfare(List<GankEntity> androidList) {
         if (mData == null) {
             mData = new ArrayList<>();
         }
-//        mData.clear();//不能clear，否则下拉刷新会重新填充list
-        mData.addAll(welfareList);
+        mData.addAll(androidList);
         mAdapter.setData(mData);
     }
 
@@ -112,19 +105,11 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
     @Override
     public void onRefresh() {
-        /**
-         * 会出现Issues #1的问题
-         */
-//        if (mData != null) {
-//            mData.clear();
-//        }
-        mWelfarePresenter.loadWelfareList(mCount, mPage);
-        Debugger.d(TAG, "下拉刷新...");
+        mPresenter.loadAndroidList(mCount, mPage);
     }
 
     @Override
     public void loadMore(int itemsCount, int maxLastVisiblePosition) {
-        mWelfarePresenter.loadWelfareList(mCount, ++mPage);
-        Debugger.d(TAG, "加载更多...");
+        mPresenter.loadAndroidList(mCount, ++mPage);
     }
 }
