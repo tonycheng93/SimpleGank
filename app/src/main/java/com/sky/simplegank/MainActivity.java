@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sky.simplegank.FrontEnd.view.FrontEndFragment;
+import com.sky.simplegank.CompleteApp.view.AppFragment;
 import com.sky.simplegank.utils.ActivityUtil;
 
 public class MainActivity extends AppCompatActivity
@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, WelfareFragment.newInstance("WelfareFragment"));
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AndroidFragment.newInstance("AndroidFragment"));
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, ExpandFragment.newInstance("ExpandFragment"));
-        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, FrontEndFragment.newInstance("FrontEndFragment"));
+//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, FrontEndFragment.newInstance("FrontEndFragment"));
+        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AppFragment.newInstance("AppFragment"));
     }
 
     @Override

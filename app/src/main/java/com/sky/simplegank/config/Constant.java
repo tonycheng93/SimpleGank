@@ -20,5 +20,6 @@ public abstract class Constant {
     public static final String CATEGORY_REST_VIDEO = "休息视频";
     public static final String CATEGORY_EXPAND_RESOURCES = "拓展资源";
     public static final String CATEGORY_FRONT_END = "前端";
+    public static final String CATEGORY_APP = "App";
     public static final String CATEGORY_ALL = "all";
 }
