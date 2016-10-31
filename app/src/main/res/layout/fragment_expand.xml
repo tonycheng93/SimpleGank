@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.sky.simplegank.Android.view.AndroidFragment">
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/expand_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/card_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:recyclerviewEmptyView="@layout/recycler_view_empty_view"
+        app:recyclerviewScrollbars="vertical">
+    </com.marshalchen.ultimaterecyclerview.UltimateRecyclerView>
+
+</FrameLayout>
