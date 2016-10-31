@@ -68,7 +68,7 @@ public class ExpandAdapter extends UltimateViewAdapter<ExpandAdapter.ExpandViewH
 
     @Override
     public int getAdapterItemCount() {
-        return 0;
+        return mData == null ? 0 : mData.size();
     }
 
     @Override
