@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sky.simplegank.CompleteApp.view.AppFragment;
+import com.sky.simplegank.Welfare.view.WelfareFragment;
 import com.sky.simplegank.utils.ActivityUtil;
 
 public class MainActivity extends AppCompatActivity
@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, WelfareFragment.newInstance("WelfareFragment"));
+        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, WelfareFragment.newInstance("WelfareFragment"));
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AndroidFragment.newInstance("AndroidFragment"));
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, ExpandFragment.newInstance("ExpandFragment"));
 //        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, FrontEndFragment.newInstance("FrontEndFragment"));
-        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AppFragment.newInstance("AppFragment"));
+//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AppFragment.newInstance("AppFragment"));
     }
 
     @Override

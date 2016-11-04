@@ -1,8 +1,10 @@
 package com.sky.simplegank.Welfare.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.marshalchen.ultimaterecyclerview.RecyclerItemClickListener;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.sky.simplegank.R;
 import com.sky.simplegank.Welfare.WelfareAdapter;
@@ -29,6 +32,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         SwipeRefreshLayout.OnRefreshListener, UltimateRecyclerView.OnLoadMoreListener {
 
     private static final String TAG = "WelfareFragment";
+    public static final String PICTURE_URL_FLAG = "url";
 
     private UltimateRecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mLayoutManager;
@@ -79,6 +83,8 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
 
+        mRecyclerView.addOnItemTouchListener(mItemClickListener);
+
         onRefresh();
 
         return rootView;
@@ -127,4 +133,14 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mWelfarePresenter.loadWelfareList(mCount, ++mPage);
         Debugger.d(TAG, "加载更多...");
     }
+
+    private RecyclerItemClickListener mItemClickListener = new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            Intent intent = new Intent(getActivity(), PictureActivity.class);
+            String pictureUrl = mData.get(position).getUrl();
+            intent.putExtra(PICTURE_URL_FLAG, pictureUrl);
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view,"sharedNames").toBundle());
+        }
+    });
 }

@@ -1,6 +1,7 @@
 package com.sky.simplegank;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.squareup.leakcanary.LeakCanary;
 
@@ -10,6 +11,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 public class App extends Application {
 
+    private static Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,5 +20,11 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
+
+        mContext = getApplicationContext();
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 }
