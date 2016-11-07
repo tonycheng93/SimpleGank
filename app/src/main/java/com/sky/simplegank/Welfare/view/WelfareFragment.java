@@ -33,6 +33,7 @@ public class WelfareFragment extends Fragment implements IWelfareView,
 
     private static final String TAG = "WelfareFragment";
     public static final String PICTURE_URL_FLAG = "url";
+    public static final String PICTURE_TIME_FLAG = "time";
 
     private UltimateRecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mLayoutManager;
@@ -137,10 +138,12 @@ public class WelfareFragment extends Fragment implements IWelfareView,
     private RecyclerItemClickListener mItemClickListener = new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            Intent intent = new Intent(getActivity(), PictureActivity.class);
+            Intent intent = new Intent(getActivity(), WelfareDetailActivity.class);
             String pictureUrl = mData.get(position).getUrl();
+            String pictureTime = mData.get(position).getPublishedAt().split("T")[0];
             intent.putExtra(PICTURE_URL_FLAG, pictureUrl);
-            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view,"sharedNames").toBundle());
+            intent.putExtra(PICTURE_TIME_FLAG, pictureTime);
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, "sharedNames").toBundle());
         }
     });
 }
