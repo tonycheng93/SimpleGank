@@ -6,6 +6,7 @@ import com.sky.simplegank.entity.VideoEntity;
 import java.util.List;
 
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -16,6 +17,7 @@ import rx.Observable;
 public interface ApiService {
 
     //http://gank.io/api/data/Android/10/1
+    @Headers("Cache-Control: public, max-age=3600")
     @GET("data/{category}/{count}/{page}")
     Observable<HttpResult<List<GankEntity>>> getGankList(
             @Path("category") String category,
