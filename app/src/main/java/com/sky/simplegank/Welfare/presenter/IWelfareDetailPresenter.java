@@ -9,4 +9,6 @@ import android.graphics.Bitmap;
 public interface IWelfareDetailPresenter {
 
     void saveImage(Bitmap bitmap, String title);
+
+    void setWallPaper(Bitmap bitmap);
 }

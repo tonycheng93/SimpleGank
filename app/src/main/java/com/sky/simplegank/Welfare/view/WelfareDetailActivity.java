@@ -1,8 +1,10 @@
 package com.sky.simplegank.Welfare.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +36,7 @@ public class WelfareDetailActivity extends BaseActivity implements IWelfareDetai
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_picture);
+        setContentView(R.layout.activity_welfare_detail);
 
         ivWelfare = (PhotoView) findViewById(R.id.iv_welfare);
         fab = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
@@ -45,12 +47,30 @@ public class WelfareDetailActivity extends BaseActivity implements IWelfareDetai
         attacher.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
             @Override
             public void onViewTap(View view, float x, float y) {
-                view.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        return false;
-                    }
-                });
+
+            }
+        });
+
+        attacher.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(WelfareDetailActivity.this)
+                        .setMessage(R.string.save_to_phone)
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        })
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mPresenter.saveImage(mBitmap, imageTime);
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+                return true;
             }
         });
 
@@ -78,6 +98,7 @@ public class WelfareDetailActivity extends BaseActivity implements IWelfareDetai
                     case R.id.action_share:
                         break;
                     case R.id.action_wallpaper:
+                        mPresenter.setWallPaper(mBitmap);
                         break;
                 }
                 return false;
@@ -94,22 +115,22 @@ public class WelfareDetailActivity extends BaseActivity implements IWelfareDetai
 
     @Override
     public void showProgress() {
-
+        showProgressDialog();
     }
 
 
     @Override
     public void showSuccessMsg() {
-
+        showProgressSuccess(getString(R.string.saving_success));//调用了这个方法
     }
 
     @Override
     public void hideProgress() {
-
+        dismissProgressDialog();
     }
 
     @Override
     public void showFailMsg() {
-
+        showProgressFail(getString(R.string.saving_failed));
     }
 }

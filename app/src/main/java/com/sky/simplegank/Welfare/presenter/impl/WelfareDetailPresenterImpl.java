@@ -14,7 +14,7 @@ import com.sky.simplegank.Welfare.view.IWelfareDetailView;
  */
 
 public class WelfareDetailPresenterImpl implements IWelfareDetailPresenter,
-        WelfareDetailModelImpl.OnSaveImageListener {
+        WelfareDetailModelImpl.OnSaveImageListener, WelfareDetailModelImpl.OnSetWallPaperListener {
 
     private IWelfareDetailView mWelfareDetailView;
     private IWelfareDetailModel mWelfareDetailModel;
@@ -24,10 +24,11 @@ public class WelfareDetailPresenterImpl implements IWelfareDetailPresenter,
         mWelfareDetailModel = new WelfareDetailModelImpl();
     }
 
+    /*------------保存图片------------*/
     @Override
     public void saveImage(Bitmap bitmap, String title) {
         mWelfareDetailView.showProgress();
-        mWelfareDetailModel.saveImage(App.getContext(),bitmap, title, this);
+        mWelfareDetailModel.saveImage(App.getContext(), bitmap, title, this);
     }
 
     @Override
@@ -38,6 +39,25 @@ public class WelfareDetailPresenterImpl implements IWelfareDetailPresenter,
 
     @Override
     public void onFail(Throwable throwable) {
+        mWelfareDetailView.showFailMsg();
+        mWelfareDetailView.hideProgress();
+    }
+
+    /*----------设置壁纸-------------*/
+    @Override
+    public void setWallPaper(Bitmap bitmap) {
+        mWelfareDetailView.showProgress();
+        mWelfareDetailModel.setWallPaper(App.getContext(), bitmap, this);
+    }
+
+    @Override
+    public void onSetWallPaperSuccess(Bitmap bitmap) {
+        mWelfareDetailView.showSuccessMsg();
+        mWelfareDetailView.hideProgress();
+    }
+
+    @Override
+    public void onSetWallPaperFail(Throwable throwable) {
         mWelfareDetailView.showFailMsg();
         mWelfareDetailView.hideProgress();
     }

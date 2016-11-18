@@ -51,9 +51,52 @@ public class WelfareDetailModelImpl implements IWelfareDetailModel {
                 });
     }
 
+    @Override
+    public void setWallPaper(final Context context, final Bitmap bitmap, final OnSetWallPaperListener listener) {
+        Observable.create(new Observable.OnSubscribe<Bitmap>() {
+            @Override
+            public void call(Subscriber<? super Bitmap> subscriber) {
+                if (bitmap == null) {
+                    subscriber.onError(new Exception("设置壁纸失败。"));
+                } else {
+                    subscriber.onNext(bitmap);
+                    subscriber.onCompleted();
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Bitmap>() {
+                    @Override
+                    public void call(Bitmap bitmap) {
+                        BitmapUtil.setWallPaper(context, bitmap);
+                        listener.onSetWallPaperSuccess(bitmap);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        listener.onSetWallPaperFail(throwable);
+                    }
+                });
+    }
+
     public interface OnSaveImageListener {
         void onSuccess(Uri uri);
 
         void onFail(Throwable throwable);
+    }
+
+    /**
+     * 分享暂时不写，后期看情况引入友盟第三方分享
+     */
+    public interface OnShareImageListener {
+        void onShareImageSuccess();
+
+        void onShareImageFail(Throwable throwable);
+    }
+
+    public interface OnSetWallPaperListener {
+        void onSetWallPaperSuccess(Bitmap bitmap);
+
+        void onSetWallPaperFail(Throwable throwable);
     }
 }

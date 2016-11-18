@@ -15,4 +15,12 @@ public class ActivityUtil {
         transaction.add(containerViewId, fragment);
         transaction.commit();
     }
+
+    public static void hideFragment(FragmentManager manager, Fragment fragment) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (fragment != null) {
+            transaction.hide(fragment);
+        }
+        transaction.commit();
+    }
 }

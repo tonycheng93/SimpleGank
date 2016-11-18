@@ -7,6 +7,8 @@ package com.sky.simplegank.Welfare.view;
 public interface IWelfareDetailView {
     void showProgress();
 
+//    void saveImage(Uri uri);
+
     void showSuccessMsg();
 
     void hideProgress();

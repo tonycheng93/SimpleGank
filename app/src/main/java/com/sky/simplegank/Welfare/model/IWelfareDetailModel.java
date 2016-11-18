@@ -13,4 +13,7 @@ public interface IWelfareDetailModel {
 
     void saveImage(Context context, Bitmap bitmap, String title,
                    WelfareDetailModelImpl.OnSaveImageListener listener);
+
+    void setWallPaper(Context context, Bitmap bitmap,
+                      WelfareDetailModelImpl.OnSetWallPaperListener listener);
 }

@@ -1,5 +1,7 @@
 package com.sky.simplegank.utils;
 
+import android.app.WallpaperManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
@@ -46,5 +48,13 @@ public class BitmapUtil {
         return Uri.fromFile(file);
     }
 
+    public static void setWallPaper(Context Context, Bitmap bitmap) {
+        WallpaperManager manager = WallpaperManager.getInstance(Context);
+        try {
+            manager.setBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
