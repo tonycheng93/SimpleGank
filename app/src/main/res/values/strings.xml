@@ -8,4 +8,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="saving_image">正在保存...</string>
+    <string name="saving_success">保存成功！</string>
+    <string name="saving_failed">保存失败</string>
+    <string name="save_to_phone">是否保存到手机</string>
 </resources>

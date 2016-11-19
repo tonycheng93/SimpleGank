@@ -42,4 +42,5 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile 'io.github.yavski:fab-speed-dial:1.0.6'
+    compile 'com.bigkoo:svprogresshud:1.0.6'
 }
