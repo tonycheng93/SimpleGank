@@ -76,9 +76,10 @@ public class AndroidAdapter extends UltimateViewAdapter<AndroidAdapter.AndroidVi
         holder.tvAndroid.setText(desc);
 
         if (imageUrl != null && imageUrl.size() > 0) {
-            ImageLoader.display(mContext, imageUrl.get(0), holder.ivAndroid);
+            ImageLoader.displayAsGif(mContext, imageUrl.get(0), holder.ivAndroid);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivAndroid);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivAndroid);
+            holder.ivAndroid.setVisibility(View.GONE);
         }
     }
 

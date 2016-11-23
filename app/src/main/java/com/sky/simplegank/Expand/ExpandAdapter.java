@@ -62,7 +62,8 @@ public class ExpandAdapter extends UltimateViewAdapter<ExpandAdapter.ExpandViewH
         if (imageUrl != null && imageUrl.size() > 0) {
             ImageLoader.display(mContext, imageUrl.get(0), holder.ivExpand);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivExpand);
+            holder.ivExpand.setVisibility(View.GONE);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivExpand);
         }
     }
 

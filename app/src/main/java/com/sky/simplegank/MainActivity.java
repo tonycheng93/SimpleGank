@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,8 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.sky.simplegank.Android.view.AndroidFragment;
+import com.sky.simplegank.CompleteApp.view.AppFragment;
+import com.sky.simplegank.Expand.view.ExpandFragment;
+import com.sky.simplegank.FrontEnd.view.FrontEndFragment;
+import com.sky.simplegank.IOS.view.IOSFragment;
 import com.sky.simplegank.Welfare.view.WelfareFragment;
-import com.sky.simplegank.utils.ActivityUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,11 +51,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, WelfareFragment.newInstance("WelfareFragment"));
-//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AndroidFragment.newInstance("AndroidFragment"));
-//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, ExpandFragment.newInstance("ExpandFragment"));
-//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, FrontEndFragment.newInstance("FrontEndFragment"));
-//        ActivityUtil.addActivityToFragment(getSupportFragmentManager(),R.id.container_view, AppFragment.newInstance("AppFragment"));
+        switch2Fragment(WelfareFragment.newInstance("WelfareFragment"));
     }
 
     @Override
@@ -89,14 +92,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_welfare) {
+                switch2Fragment(WelfareFragment.newInstance("WelfareFragment"));
+        } else if (id == R.id.nav_android) {
+            switch2Fragment(AndroidFragment.newInstance("AndroidFragment"));
+        } else if (id == R.id.nav_ios) {
+            switch2Fragment(IOSFragment.newInstance("IOSFragment"));
+        } else if (id == R.id.nav_front) {
+            switch2Fragment(FrontEndFragment.newInstance("FrontEndFragment"));
+        } else if (id == R.id.nav_expand) {
+            switch2Fragment(ExpandFragment.newInstance("ExpandFragment"));
+        } else if (id == R.id.nav_app) {
+            switch2Fragment(AppFragment.newInstance("AppFragment"));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -106,5 +113,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void switch2Fragment(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.container_view, fragment);
+        transaction.commit();
+
     }
 }

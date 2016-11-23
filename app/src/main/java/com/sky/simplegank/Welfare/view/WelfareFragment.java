@@ -96,7 +96,6 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         mRecyclerView.setRefreshing(true);
     }
 
-
     @Override
     public void addWelfare(List<GankEntity> welfareList) {
         if (mData == null) {
