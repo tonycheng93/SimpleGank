@@ -36,6 +36,8 @@ public class AndroidFragment extends Fragment implements IAndroidView,
     private int mCount = 10;
     private int mPage = 1;
 
+    public static boolean mUserVisibleHint;
+
     public AndroidFragment() {
         // Required empty public constructor
     }
@@ -77,6 +79,20 @@ public class AndroidFragment extends Fragment implements IAndroidView,
         onRefresh();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        setUserVisibleHint(true);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setUserVisibleHint(false);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onPause();
     }
 
     @Override

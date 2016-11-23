@@ -36,6 +36,8 @@ public class FrontEndFragment extends Fragment implements IFrontEndView, SwipeRe
     private int mCount = 10;
     private int mPage = 1;
 
+    public static boolean mUserVisibleHint;
+
     public FrontEndFragment() {
         // Required empty public constructor
     }
@@ -76,6 +78,20 @@ public class FrontEndFragment extends Fragment implements IFrontEndView, SwipeRe
         onRefresh();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        setUserVisibleHint(true);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setUserVisibleHint(false);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onPause();
     }
 
     @Override

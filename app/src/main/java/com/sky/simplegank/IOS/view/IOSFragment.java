@@ -36,6 +36,8 @@ public class IOSFragment extends Fragment implements IIOSView,
     private int mCount = 10;
     private int mPage = 1;
 
+    public static boolean mUserVisibleHint;
+
     public IOSFragment() {
         // Required empty public constructor
     }
@@ -77,6 +79,20 @@ public class IOSFragment extends Fragment implements IIOSView,
         onRefresh();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        setUserVisibleHint(true);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setUserVisibleHint(false);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onPause();
     }
 
     @Override

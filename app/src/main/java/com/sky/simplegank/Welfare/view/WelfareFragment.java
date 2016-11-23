@@ -44,6 +44,9 @@ public class WelfareFragment extends Fragment implements IWelfareView,
     private int mCount = 10;
     private int mPage = 1;
 
+    //当前Fragment是否处于前台可见
+    public static boolean mUserVisibleHint;
+
     public WelfareFragment() {
         // Required empty public constructor
     }
@@ -89,6 +92,22 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         onRefresh();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        setUserVisibleHint(true);
+        mUserVisibleHint = getUserVisibleHint();
+        Debugger.d(mUserVisibleHint + "");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setUserVisibleHint(false);
+        mUserVisibleHint = getUserVisibleHint();
+        Debugger.d(mUserVisibleHint + "");
+        super.onPause();
     }
 
     @Override

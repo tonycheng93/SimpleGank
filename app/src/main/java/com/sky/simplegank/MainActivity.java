@@ -22,6 +22,7 @@ import com.sky.simplegank.Expand.view.ExpandFragment;
 import com.sky.simplegank.FrontEnd.view.FrontEndFragment;
 import com.sky.simplegank.IOS.view.IOSFragment;
 import com.sky.simplegank.Welfare.view.WelfareFragment;
+import com.sky.simplegank.utils.Debugger;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,17 +94,31 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_welfare) {
+            Debugger.d(WelfareFragment.mUserVisibleHint + "");
+            //当该Fragment处于前台时，再点击这个Item，不进行页面刷新，不做任何操作
+            if (!WelfareFragment.mUserVisibleHint) {
                 switch2Fragment(WelfareFragment.newInstance("WelfareFragment"));
+            }
         } else if (id == R.id.nav_android) {
-            switch2Fragment(AndroidFragment.newInstance("AndroidFragment"));
+            if (!AndroidFragment.mUserVisibleHint) {
+                switch2Fragment(AndroidFragment.newInstance("AndroidFragment"));
+            }
         } else if (id == R.id.nav_ios) {
-            switch2Fragment(IOSFragment.newInstance("IOSFragment"));
+            if (!IOSFragment.mUserVisibleHint) {
+                switch2Fragment(IOSFragment.newInstance("IOSFragment"));
+            }
         } else if (id == R.id.nav_front) {
-            switch2Fragment(FrontEndFragment.newInstance("FrontEndFragment"));
+            if (!FrontEndFragment.mUserVisibleHint){
+                switch2Fragment(FrontEndFragment.newInstance("FrontEndFragment"));
+            }
         } else if (id == R.id.nav_expand) {
-            switch2Fragment(ExpandFragment.newInstance("ExpandFragment"));
+            if (!ExpandFragment.mUserVisibleHint){
+                switch2Fragment(ExpandFragment.newInstance("ExpandFragment"));
+            }
         } else if (id == R.id.nav_app) {
-            switch2Fragment(AppFragment.newInstance("AppFragment"));
+            if (!AppFragment.mUserVisibleHint){
+                switch2Fragment(AppFragment.newInstance("AppFragment"));
+            }
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
