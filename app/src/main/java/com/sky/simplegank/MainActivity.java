@@ -16,16 +16,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.sky.simplegank.Android.view.AndroidFragment;
-import com.sky.simplegank.CompleteApp.view.AppFragment;
-import com.sky.simplegank.Expand.view.ExpandFragment;
-import com.sky.simplegank.FrontEnd.view.FrontEndFragment;
-import com.sky.simplegank.IOS.view.IOSFragment;
 import com.sky.simplegank.Welfare.view.WelfareFragment;
-import com.sky.simplegank.utils.Debugger;
+import com.sky.simplegank.mvp.view.GankFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    /**
+     * 标志变量，当处于同一个Fragment时再次点击它，不进行刷新，避免造成 资源紧张
+     */
+    private int navigationState = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        switch2Fragment(WelfareFragment.newInstance("WelfareFragment"));
+        switch2Fragment(WelfareFragment.newInstance(getString(R.string.fragment_welfare)));
     }
 
     @Override
@@ -94,32 +94,37 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_welfare) {
-            Debugger.d(WelfareFragment.mUserVisibleHint + "");
             //当该Fragment处于前台时，再点击这个Item，不进行页面刷新，不做任何操作
-            if (!WelfareFragment.mUserVisibleHint) {
-                switch2Fragment(WelfareFragment.newInstance("WelfareFragment"));
+            if (navigationState != R.id.iv_welfare) {
+                switch2Fragment(WelfareFragment.newInstance(getString(R.string.fragment_welfare)));
+                navigationState = R.id.nav_welfare;
             }
         } else if (id == R.id.nav_android) {
-            if (!AndroidFragment.mUserVisibleHint) {
-                switch2Fragment(AndroidFragment.newInstance("AndroidFragment"));
+            if (navigationState != R.id.nav_android) {
+                switch2Fragment(GankFragment.newInstance(getString(R.string.fragment_android)));
+                navigationState = R.id.nav_android;
             }
         } else if (id == R.id.nav_ios) {
-            if (!IOSFragment.mUserVisibleHint) {
-                switch2Fragment(IOSFragment.newInstance("IOSFragment"));
+            if (navigationState != R.id.nav_ios) {
+                switch2Fragment(GankFragment.newInstance(getString(R.string.fragment_ios)));
+                navigationState = R.id.nav_ios;
             }
         } else if (id == R.id.nav_front) {
-            if (!FrontEndFragment.mUserVisibleHint){
-                switch2Fragment(FrontEndFragment.newInstance("FrontEndFragment"));
+            if (navigationState != R.id.nav_front) {
+                switch2Fragment(GankFragment.newInstance(getString(R.string.fragment_front_end)));
+                navigationState = R.id.nav_front;
             }
         } else if (id == R.id.nav_expand) {
-            if (!ExpandFragment.mUserVisibleHint){
-                switch2Fragment(ExpandFragment.newInstance("ExpandFragment"));
+            if (navigationState != R.id.nav_expand) {
+                switch2Fragment(GankFragment.newInstance(getString(R.string.fragment_expand)));
+                navigationState = R.id.nav_expand;
             }
         } else if (id == R.id.nav_app) {
-            if (!AppFragment.mUserVisibleHint){
-                switch2Fragment(AppFragment.newInstance("AppFragment"));
+            if (navigationState != R.id.nav_app) {
+                switch2Fragment(GankFragment.newInstance(getString(R.string.fragment_app)));
+                navigationState = R.id.nav_app;
             }
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_about) {
 
         } else if (id == R.id.nav_send) {
 
@@ -135,6 +140,5 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container_view, fragment);
         transaction.commit();
-
     }
 }

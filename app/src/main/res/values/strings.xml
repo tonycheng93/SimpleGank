@@ -13,4 +13,13 @@
     <string name="saving_success">保存成功！</string>
     <string name="saving_failed">保存失败</string>
     <string name="save_to_phone">是否保存到手机</string>
+
+    <string name="load_data_error">哇偶，数据加载出现错误了，请检查网络连接！</string>
+
+    <string name="fragment_welfare">福利</string>
+    <string name="fragment_android">Android</string>
+    <string name="fragment_ios">iOS</string>
+    <string name="fragment_front_end">前端</string>
+    <string name="fragment_expand">拓展资源</string>
+    <string name="fragment_app">App</string>
 </resources>

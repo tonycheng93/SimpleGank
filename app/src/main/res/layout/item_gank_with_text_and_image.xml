@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+    <FrameLayout
+            android:id="@+id/gank_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.youth.banner.Banner
+                android:id="@+id/img_banner"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:image_scale_type="center_inside"
+                app:indicator_drawable_selected="@drawable/selected_indicator"
+                app:indicator_drawable_unselected="@drawable/unselected_indicator"></com.youth.banner.Banner>
+
+        <LinearLayout
+                android:id="@+id/ll_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/item_trans_shade"
+                android:orientation="vertical">
+
+
+            <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="@dimen/card_margin"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textSize="@dimen/sn_16sp"
+                    tools:text="随着Android引进Java 8 的一些功能"/>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/author_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginBottom="@dimen/card_margin"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:textColor="@android:color/darker_gray"
+                        tools:text="via Tony Chan"/>
+
+                <TextView
+                        android:id="@+id/time_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/card_margin"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:layout_marginRight="@dimen/margin"
+                        android:textColor="@android:color/darker_gray"
+                        tools:text="2016-11-24"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+</android.support.v7.widget.CardView>

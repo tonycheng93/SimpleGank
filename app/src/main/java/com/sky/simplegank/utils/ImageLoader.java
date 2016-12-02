@@ -12,7 +12,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
  * Created by tonycheng on 2016/10/17.
  */
 
-public class ImageLoader {
+public class ImageLoader extends com.youth.banner.loader.ImageLoader {
 
     /**
      * 普通加载图片方式
@@ -50,6 +50,15 @@ public class ImageLoader {
         Glide.with(context)
                 .load(url)
                 .asGif()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(imageView);
+    }
+
+
+    @Override
+    public void displayImage(Context context, Object path, ImageView imageView) {
+        Glide.with(context)
+                .load(path)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(imageView);
     }
