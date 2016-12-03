@@ -43,4 +43,5 @@ dependencies {
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile 'io.github.yavski:fab-speed-dial:1.0.6'
     compile 'com.bigkoo:svprogresshud:1.0.6'
+    compile 'me.drakeet.multitype:multitype:2.2.1'
 }
