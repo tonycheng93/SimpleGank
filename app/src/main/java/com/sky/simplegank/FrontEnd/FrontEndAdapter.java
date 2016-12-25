@@ -67,7 +67,8 @@ public class FrontEndAdapter extends UltimateViewAdapter<FrontEndAdapter.FrontEn
         if (imageUrl != null && imageUrl.size() > 0) {
             ImageLoader.display(mContext, imageUrl.get(0), holder.ivFrontView);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivFrontView);
+            holder.ivFrontView.setVisibility(View.GONE);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivFrontView);
         }
     }
 

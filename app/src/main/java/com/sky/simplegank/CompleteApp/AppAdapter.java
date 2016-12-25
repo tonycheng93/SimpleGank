@@ -64,7 +64,8 @@ public class AppAdapter extends UltimateViewAdapter<AppAdapter.AppViewHolder> {
         if (imageUrl != null && imageUrl.size() > 0) {
             ImageLoader.display(mContext, imageUrl.get(0), holder.ivApp);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivApp);
+            holder.ivApp.setVisibility(View.GONE);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivApp);
         }
     }
 

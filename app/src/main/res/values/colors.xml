@@ -12,4 +12,16 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+
+    <color name="item_trans_shade">#99000000</color>
+
+    <!--指示器颜色-->
+    <color name="indicator_color">#FFFFFF8c</color>
+    <!--无图片时Item背景色-->
+    <color name="no_image_item_color">#FFFFFF</color>
+    <color name="status_bar_color">#375683</color>
+    <!--ToolBar的颜色-->
+    <color name="toolbar_color">#FF4D6992</color>
+    <color name="banner_indicator_selected_color">#FF4081</color>
+    <color name="banner_indicator_unselected_color">@android:color/darker_gray</color>
 </resources>

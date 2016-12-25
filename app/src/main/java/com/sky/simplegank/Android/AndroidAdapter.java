@@ -2,6 +2,7 @@ package com.sky.simplegank.Android;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class AndroidAdapter extends UltimateViewAdapter<AndroidAdapter.AndroidVi
 
     private Context mContext;
     private List<GankEntity> mData;
+
+    private OnItemClickListener mOnItemClickListener;
 
     public AndroidAdapter(Context context) {
         this.mContext = context;
@@ -76,9 +79,14 @@ public class AndroidAdapter extends UltimateViewAdapter<AndroidAdapter.AndroidVi
         holder.tvAndroid.setText(desc);
 
         if (imageUrl != null && imageUrl.size() > 0) {
-            ImageLoader.display(mContext, imageUrl.get(0), holder.ivAndroid);
+            ImageLoader.displayAsGif(mContext, imageUrl.get(0), holder.ivAndroid);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivAndroid);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivAndroid);
+            holder.ivAndroid.setVisibility(View.GONE);
+        }
+
+        if (!TextUtils.isEmpty(time) && !TextUtils.isEmpty(who)) {
+            holder.tvAndroidAuthor.setText(time + " by " + who);
         }
     }
 
@@ -107,16 +115,40 @@ public class AndroidAdapter extends UltimateViewAdapter<AndroidAdapter.AndroidVi
 
     }
 
-    public class AndroidViewHolder extends UltimateRecyclerviewViewHolder {
+    public class AndroidViewHolder extends UltimateRecyclerviewViewHolder
+            implements View.OnClickListener {
 
         private TextView tvAndroid;
+
         private ImageView ivAndroid;
+        private TextView tvAndroidAuthor;
 
         public AndroidViewHolder(View itemView) {
             super(itemView);
 
             tvAndroid = (TextView) itemView.findViewById(R.id.tv_android);
             ivAndroid = (ImageView) itemView.findViewById(R.id.iv_android);
+            tvAndroidAuthor = (TextView) itemView.findViewById(R.id.tv_android_author);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            mOnItemClickListener.onItemClick(v, position);
+        }
+
+    }
+
+    public OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 }

@@ -69,7 +69,8 @@ public class IOSAdapter extends UltimateViewAdapter<IOSAdapter.IOSViewHolder> {
         if (imageUrl != null && imageUrl.size() > 0) {
             ImageLoader.display(mContext, imageUrl.get(0), holder.ivIOS);
         } else {
-            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivIOS);
+            holder.ivIOS.setVisibility(View.GONE);
+//            ImageLoader.display(mContext, R.mipmap.ic_launcher, holder.ivIOS);
         }
     }
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+    <RelativeLayout
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            android:id="@+id/gank_item_layout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <TextView
+                android:layout_marginLeft="16dp"
+                android:textSize="@dimen/sn_16sp"
+                tools:text="随着Android引进Java 8 的一些功能"
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_below="@id/title_text_view"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_alignParentLeft="true"
+                android:textColor="@android:color/darker_gray"
+                android:id="@+id/author_text_view"
+                tools:text="via Tony Chan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_below="@id/title_text_view"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin"
+                tools:text="2016-11-24"
+                android:layout_gravity="right"
+                android:textColor="@android:color/darker_gray"
+                android:id="@+id/time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

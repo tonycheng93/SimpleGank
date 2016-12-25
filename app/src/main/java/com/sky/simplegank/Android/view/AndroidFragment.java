@@ -1,11 +1,13 @@
 package com.sky.simplegank.Android.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.sky.simplegank.Android.AndroidAdapter;
 import com.sky.simplegank.Android.presenter.IAndroidPresenter;
 import com.sky.simplegank.Android.presenter.impl.AndroidPresenterImpl;
 import com.sky.simplegank.R;
+import com.sky.simplegank.WebViewActivity;
 import com.sky.simplegank.entity.GankEntity;
 
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class AndroidFragment extends Fragment implements IAndroidView,
-        SwipeRefreshLayout.OnRefreshListener, UltimateRecyclerView.OnLoadMoreListener {
+        SwipeRefreshLayout.OnRefreshListener, UltimateRecyclerView.OnLoadMoreListener, AndroidAdapter.OnItemClickListener {
 
 
     private UltimateRecyclerView mRecyclerView;
@@ -35,6 +38,8 @@ public class AndroidFragment extends Fragment implements IAndroidView,
     private List<GankEntity> mData;
     private int mCount = 10;
     private int mPage = 1;
+
+    public static boolean mUserVisibleHint;
 
     public AndroidFragment() {
         // Required empty public constructor
@@ -72,11 +77,26 @@ public class AndroidFragment extends Fragment implements IAndroidView,
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new AndroidAdapter(getActivity());
+        mAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
 
         onRefresh();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        setUserVisibleHint(true);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setUserVisibleHint(false);
+        mUserVisibleHint = getUserVisibleHint();
+        super.onPause();
     }
 
     @Override
@@ -111,5 +131,15 @@ public class AndroidFragment extends Fragment implements IAndroidView,
     @Override
     public void loadMore(int itemsCount, int maxLastVisiblePosition) {
         mPresenter.loadAndroidList(mCount, ++mPage);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        String title = mData.get(position).getDesc();
+        String url = mData.get(position).getUrl();
+        if (!TextUtils.isEmpty(url)) {
+            Intent intent = WebViewActivity.newIntent(getActivity(), title, url);
+            startActivity(intent);
+        }
     }
 }
