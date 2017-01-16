@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.sky.simplegank.Welfare.view.WelfareFragment;
+import com.sky.simplegank.about.AboutFragment;
 import com.sky.simplegank.mvp.view.GankFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -125,9 +126,10 @@ public class MainActivity extends AppCompatActivity
                 navigationState = R.id.nav_app;
             }
         } else if (id == R.id.nav_about) {
-
-        } else if (id == R.id.nav_send) {
-
+            if (navigationState != R.id.nav_about) {
+                switch2Fragment(AboutFragment.newInstance(getString(R.string.fragment_about)));
+                navigationState = R.id.nav_about;
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

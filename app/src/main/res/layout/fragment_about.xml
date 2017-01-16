@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="@dimen/card_margin"
+              android:orientation="vertical"
+              tools:context="com.sky.simplegank.about.AboutFragment">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="serif"
+            android:textSize="@dimen/sn_20sp"
+            android:text="@string/about_title"/>
+
+    <TextView
+            android:text="@string/about_introduce"
+            android:textSize="@dimen/sn_16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="serif"
+            android:textSize="@dimen/sn_20sp"
+            android:text="@string/about_me"/>
+
+    <TextView
+            android:text="@string/about_author"
+            android:textSize="@dimen/sn_16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

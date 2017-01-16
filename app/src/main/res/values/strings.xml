@@ -22,4 +22,19 @@
     <string name="fragment_front_end">前端</string>
     <string name="fragment_expand">拓展资源</string>
     <string name="fragment_app">App</string>
+    <string name="fragment_about">About</string>
+
+    <!--About-->
+    <string name="about_title">SimpleGank</string>
+    <string name="about_me">关于我</string>
+    <string name="about_introduce">
+        SimpleGank 是一个采用 MVP+RxJava+Retrofit+Glide 等众多优秀的开源项目完成
+        的练手项目。
+    </string>
+    <string name="about_author">
+        2016年6月毕业，目前工作于深圳。从事Android应用开发，对 Mobile 和 TV 端都有研
+        究。热爱分享，酷爱足球。\n
+        Email：tonycheng93@outlook.com\n
+        Blog：tonycheng93.github.io
+    </string>
 </resources>
