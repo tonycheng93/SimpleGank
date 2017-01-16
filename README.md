@@ -1,3 +1,11 @@
+# SimpleGank
+an unoffical Gank.io application,using MVP + Retrofit + RxJava.
+
+# Captures
+<img src="images/00.png" width="40%" height="40%"/> <img src="images/01.png" width="40%" height="40%"/>
+<img src="images/02.png" width="40%" height="40%"/> <img src="images/03.png" width="40%" height="40%"/>
+<img src="images/04.png" width="40%" height="40%"/>
+
 #	干货集中营API文档
 
 ###	1、获取分类数据
