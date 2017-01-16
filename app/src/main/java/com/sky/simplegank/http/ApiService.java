@@ -1,7 +1,6 @@
 package com.sky.simplegank.http;
 
 import com.sky.simplegank.entity.GankEntity;
-import com.sky.simplegank.entity.VideoEntity;
 
 import java.util.List;
 
@@ -24,9 +23,4 @@ public interface ApiService {
             @Path("count") int count,
             @Path("page") int page);
 
-    //http://gank.io/api/history/content/10/1
-    @GET("history/content/{count}/{page}")
-    Observable<HttpResult<List<VideoEntity>>> getVideoList(
-            @Path("count") int count,
-            @Path("page") int page);
 }

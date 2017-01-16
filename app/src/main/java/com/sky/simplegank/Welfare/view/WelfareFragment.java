@@ -120,9 +120,17 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         if (mData == null) {
             mData = new ArrayList<>();
         }
-//        mData.clear();//不能clear，否则下拉刷新会重新填充list
         mData.addAll(welfareList);
+        if (mPage == 1) {
+            mAdapter.setData(mData);
+        } else {
+            if (welfareList == null || welfareList.size() == 0) {
+
+            }
+            mAdapter.notifyDataSetChanged();
+        }
         mAdapter.setData(mData);
+        mPage += 1;
     }
 
     @Override
@@ -140,9 +148,10 @@ public class WelfareFragment extends Fragment implements IWelfareView,
         /**
          * 会出现Issues #1的问题
          */
-//        if (mData != null) {
-//            mData.clear();
-//        }
+        mPage = 1;
+        if (mData != null) {
+            mData.clear();
+        }
         mWelfarePresenter.loadWelfareList(mCount, mPage);
         Debugger.d(TAG, "下拉刷新...");
     }
