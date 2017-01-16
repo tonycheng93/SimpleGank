@@ -2,13 +2,11 @@ package com.sky.simplegank.entity;
 
 import java.util.List;
 
-import me.drakeet.multitype.Item;
-
 /**
  * Created by tonycheng on 2016/10/14.
  */
 
-public class GankEntity implements Item{
+public class GankEntity{
 
     /*{
         "_id": "57e7e7fd421aa95de3b8aad9",
